@@ -19,6 +19,8 @@ seus logos são marcas do projeto Rigby2D e não são usados aqui como marca des
   onion, guias, auto key, Setup/Animate, desfazer/refazer, Shift/Ctrl/Alt fixos e controles de quadro.
 - Caneta e dedos: a caneta é a ferramenta (a pressão controla o pincel de pesos); dedos movem e dão
   zoom (pinça); toque de 2 dedos desfaz, de 3 refaz; a palma apoiada é ignorada.
+- Barra flutuante horizontal ou vertical; layout em retrato (área de desenho em cima, linha do tempo e
+  painéis lado a lado embaixo) ao girar o tablet.
 - App instalável e offline (manifest + service worker).
 - Nome e ícone próprios; sem os projetos de demonstração e sem as notícias/links de comunidade do Rigby2D.
 
