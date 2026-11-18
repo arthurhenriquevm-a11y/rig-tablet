@@ -2,8 +2,8 @@
 // Offline cache for the installable editor (Rig Tablet). vite.config.js fills in the cache name
 // and the list of built files and writes this out as sw.js; it is not bundled itself.
 
-const CACHE = "rig-tablet-0.5.1-136k2sf";
-const FILES = ["./","assets/app-O6qaiBkc.js","assets/aseprite-Dq70idiK.js","assets/dist-BISDhMXN.js","assets/dist-js-CGPjRG15.js","assets/dist-js-CmtiOpsg.js","assets/dist-js-DvfKKs8d.js","assets/gif-VmFIG2lv.js","assets/interop-BYtR0Jw9.js","assets/main-DOzxb_N5.css","assets/main-Dd8AJM_T.js","assets/offline-Dm1hfR66.js","assets/output-CyLOa8ob.js","assets/panel-D8b-JhzL.js","assets/path-CiM2TmSP.js","assets/pngworker-DmxWEtbT.js","assets/prefs-CEXtYwJn.js","assets/render-BQU7Izf6.js","assets/renderer-GFtNoTVq.js","assets/rigby2d-icon-dark-CGr4vMEi.svg","assets/rolldown-runtime-hePW80VL.js","assets/splash-GZuKtjde.js","assets/spritesheetworker-DN9SdPFE.js","assets/svgimport-DCvIDS7v.js","assets/themeui-CItxSFNN.js","assets/themeui-CNIZOYgX.css","assets/webview-CvNWatMx.js","assets/whisper.worker-CQ5k5vU2.js","assets/window-pHGx5qse.js","assets/worker-CK5aNBIl.js","index.html","manifest.webmanifest","panel.html","pwa/apple-touch-icon.png","pwa/icon-192.png","pwa/icon-512.png","pwa/icon-maskable-512.png","pyodide/pyodide-lock.json","pyodide/pyodide.asm.mjs","pyodide/pyodide.asm.wasm","pyodide/pyodide.mjs","pyodide/python_stdlib.zip"];
+const CACHE = "rig-tablet-0.5.1-fjlrpt";
+const FILES = ["./","assets/app-O6qaiBkc.js","assets/aseprite-Dq70idiK.js","assets/dist-BISDhMXN.js","assets/dist-js-CGPjRG15.js","assets/dist-js-CmtiOpsg.js","assets/dist-js-DvfKKs8d.js","assets/gif-VmFIG2lv.js","assets/interop-BYtR0Jw9.js","assets/main-BqGsmy1c.css","assets/main-CyvKm77h.js","assets/offline-Dm1hfR66.js","assets/output-CyLOa8ob.js","assets/panel-D8b-JhzL.js","assets/path-CiM2TmSP.js","assets/pngworker-DmxWEtbT.js","assets/prefs-CEXtYwJn.js","assets/render-BQU7Izf6.js","assets/renderer-GFtNoTVq.js","assets/rigby2d-icon-dark-CGr4vMEi.svg","assets/rolldown-runtime-hePW80VL.js","assets/splash-GZuKtjde.js","assets/spritesheetworker-DN9SdPFE.js","assets/svgimport-DCvIDS7v.js","assets/themeui-CItxSFNN.js","assets/themeui-CNIZOYgX.css","assets/webview-CvNWatMx.js","assets/whisper.worker-CQ5k5vU2.js","assets/window-pHGx5qse.js","assets/worker-CK5aNBIl.js","index.html","manifest.webmanifest","panel.html","pwa/apple-touch-icon.png","pwa/icon-192.png","pwa/icon-512.png","pwa/icon-maskable-512.png","pyodide/pyodide-lock.json","pyodide/pyodide.asm.mjs","pyodide/pyodide.asm.wasm","pyodide/pyodide.mjs","pyodide/python_stdlib.zip"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -31,10 +31,21 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE);
-      // Opening the app (any page URL): the cached editor page, so it starts without internet.
+      // Opening the app: the newest page from the network when it answers quickly (so updates show
+      // up at once), else the cached one, so it starts without internet. Its hashed scripts are then
+      // fetched (and cached) below when the cache does not have them yet.
       if (req.mode === 'navigate') {
-        const page = (await cache.match(req, { ignoreSearch: true, ignoreVary: true })) || (await cache.match('./', { ignoreVary: true }));
-        if (page) return page;
+        const cached = (await cache.match(req, { ignoreSearch: true, ignoreVary: true })) || (await cache.match('./', { ignoreVary: true }));
+        try {
+          const res = await Promise.race([fetch(req, { cache: 'no-store' }), new Promise((_, no) => setTimeout(() => no(new Error('slow')), cached ? 3000 : 30000))]);
+          if (res.ok) {
+            cache.put('./', res.clone());
+            return res;
+          }
+        } catch {
+          // Offline or slow: the cached page below.
+        }
+        if (cached) return cached;
       }
       const hit = await cache.match(req, { ignoreSearch: true, ignoreVary: true });
       if (hit) return hit;
