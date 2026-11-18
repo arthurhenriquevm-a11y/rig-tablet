@@ -1,0 +1,1 @@
+import{Nt as e}from"./interop-BYtR0Jw9.js";async function t(){await e(`plugin:process|restart`)}export{t as relaunch};

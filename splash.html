@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rigby2D</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/rigby2d-icon-dark-CGr4vMEi.svg" />
+    <style>html,body{color:#a9adb5;-webkit-user-select:none;user-select:none;cursor:default;background:#0a0a0b;height:100%;margin:0;font:11px system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;overflow:hidden}body{background:radial-gradient(60% 75% at 50% 52%,#408ce629,#0000 70%),radial-gradient(50% 40% at 70%,#7ba7c712,#0000 70%),#0a0a0b}#lockup{opacity:0;clip-path:inset(0 100% 0 0);filter:drop-shadow(0 0 18px #50a0ff59);width:56%;position:absolute;top:50%;left:50%;transform:translate(-46%,-50%)}#lockup.reveal{clip-path:inset(0);opacity:1;transition:clip-path .55s cubic-bezier(.2,.7,.2,1),opacity .25s ease-out,transform .8s cubic-bezier(.2,.7,.2,1);transform:translate(-50%,-50%)}#note{letter-spacing:.04em;transition:opacity .3s;position:absolute;bottom:10px;right:14px}#art,#credit,#version,#start,#bar{display:none}body.art{background:radial-gradient(55% 80% at 62% 55%,#7ba7c729,#0000 70%),#0a0a0b}body.art #note{display:none}body.art #art{width:100%;height:100%;display:block;position:absolute;top:0;bottom:0;left:0;right:0}body.art #lockup{opacity:1;clip-path:none;filter:none;width:220px;top:26px;left:30px;transform:none}body.art #credit{color:#6b7079;font-size:11px;line-height:1.5;display:block;position:absolute;bottom:22px;left:32px}#credit b{color:#f4f4f5;font-size:13px;font-weight:600;display:block}body.art #version{color:#565a62;display:block;position:absolute;top:22px;right:28px}body.art #start{color:#6b7079;pointer-events:none;background:#26272b;border:0;border-radius:8px;padding:10px 26px;font:600 13px system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;transition:background .4s,color .4s;display:block;position:absolute;bottom:22px;right:26px}body.art #start.ready{color:#0a0a0b;cursor:pointer;pointer-events:auto;background:#f4f4f5}body.art #start.ready:hover{background:#b5d3e7}body.art #start:focus-visible{outline-offset:2px;outline:2px solid #7ba7c7}body.art #bar{background:#7ba7c7;width:0;height:2px;transition:width .4s,opacity .4s;display:block;position:absolute;bottom:0;left:0}body.leaving{opacity:0;transition:opacity .25s ease-in}</style>
+    <script type="module" crossorigin src="./assets/splash-GZuKtjde.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-hePW80VL.js">
+    <link rel="modulepreload" crossorigin href="./assets/interop-BYtR0Jw9.js">
+    <link rel="modulepreload" crossorigin href="./assets/window-pHGx5qse.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderer-GFtNoTVq.js">
+    <link rel="modulepreload" crossorigin href="./assets/prefs-CEXtYwJn.js">
+  </head>
+  <body data-tauri-drag-region>
+    <canvas id="art"></canvas>
+    <img id="lockup" alt="Rigby2D" draggable="false" />
+    <div id="credit"></div>
+    <div id="version"></div>
+    <button id="start" type="button">Start</button>
+    <div id="bar"></div>
+    <div id="note">Loading…</div>
+  </body>
+</html>

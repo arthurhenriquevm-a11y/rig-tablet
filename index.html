@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Rig Tablet</title>
+    <!-- Installable app (iPad: Share ▸ Add to Home Screen opens it full screen, offline). -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="pwa/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Rig Tablet" />
+    <meta name="theme-color" content="#1b1c1e" />
+    <link rel="icon" type="image/png" href="pwa/icon-192.png" />
+    <script type="module" crossorigin src="./assets/main-Bapstymn.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-hePW80VL.js">
+    <link rel="modulepreload" crossorigin href="./assets/interop-BYtR0Jw9.js">
+    <link rel="modulepreload" crossorigin href="./assets/path-CiM2TmSP.js">
+    <link rel="modulepreload" crossorigin href="./assets/output-CyLOa8ob.js">
+    <link rel="modulepreload" crossorigin href="./assets/window-pHGx5qse.js">
+    <link rel="modulepreload" crossorigin href="./assets/prefs-CEXtYwJn.js">
+    <link rel="modulepreload" crossorigin href="./assets/webview-CvNWatMx.js">
+    <link rel="modulepreload" crossorigin href="./assets/themeui-DG2oalCC.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderer-GFtNoTVq.js">
+    <link rel="modulepreload" crossorigin href="./assets/offline-Dm1hfR66.js">
+    <link rel="stylesheet" crossorigin href="./assets/themeui-CNIZOYgX.css">
+    <link rel="stylesheet" crossorigin href="./assets/main-BT50ak4r.css">
+  </head>
+  <body>
+    <div id="app">
+      <nav id="menubar"></nav>
+      <aside id="dock-left" class="dock-region" data-region="left"></aside>
+      <div id="split-left" class="split-v"></div>
+      <main id="center" data-tut="viewport">
+        <canvas id="viewport-gl"></canvas>
+        <canvas id="viewport"></canvas>
+        <div id="viewbar"></div>
+      </main>
+      <div id="split-right" class="split-v"></div>
+      <aside id="dock-right" class="dock-region" data-region="right"></aside>
+      <div id="split-bottom" class="split-h"></div>
+      <div id="dock-bottom" class="dock-region" data-region="bottom"></div>
+      <footer id="status"><span id="status-text"></span><span class="status-right"><span id="status-info"></span><button id="status-community" title="Discord: show your work, get help, hear about every release" data-i18n-title>Discord</button><button data-i18n id="status-log" title="Show the log (View ▸ Log)" data-i18n-title>Log</button><button id="status-version" title="About Rigby2D" data-i18n-title></button></span></footer>
+      <!-- The panels: the dock (dockui.js) moves each into its tab group. -->
+      <div id="dock-parking" hidden>
+        <section id="tree" class="panel" data-tut="tree"></section>
+        <section id="rig" class="panel" data-tut="rig"></section>
+        <section id="properties" class="panel" data-tut="inspector"><div class="content scroll"></div></section>
+        <section id="timeline" data-tut="timeline">
+          <div id="controls"></div>
+          <div class="dopesheet-wrap">
+            <div data-i18n class="empty">No animation. Press ＋ New or Tab to start animating.</div>
+            <div id="dopesheet"><canvas></canvas></div>
+            <div id="graph" hidden><canvas></canvas></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

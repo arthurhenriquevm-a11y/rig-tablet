@@ -1,0 +1,1 @@
+import{Nt as e}from"./interop-BYtR0Jw9.js";import"./window-pHGx5qse.js";var t;(function(e){e.Nsis=`nsis`,e.Msi=`msi`,e.Deb=`deb`,e.Rpm=`rpm`,e.AppImage=`appimage`,e.App=`app`})(t||={});async function n(){return e(`plugin:app|bundle_type`)}export{n as getBundleType};
