@@ -21,6 +21,8 @@ seus logos são marcas do projeto Rigby2D e não são usados aqui como marca des
   zoom (pinça); toque de 2 dedos desfaz, de 3 refaz; a palma apoiada é ignorada.
 - Barra flutuante horizontal ou vertical; layout em retrato (área de desenho em cima, linha do tempo e
   painéis lado a lado embaixo) ao girar o tablet.
+- Botão Esc na barra (desselecionar tudo); botões no canto da área de desenho para abrir e fechar a
+  Árvore/Inspetor e a linha do tempo; Ctrl fixo + caneta soma ossos à seleção.
 - App instalável e offline (manifest + service worker).
 - Nome e ícone próprios; sem os projetos de demonstração e sem as notícias/links de comunidade do Rigby2D.
 
