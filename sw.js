@@ -10,21 +10,27 @@ self.addEventListener('install', (event) => {
   // afterwards in the background, so an update reaches the iPad in seconds, not minutes.
   self.skipWaiting();
   const core = FILES.filter((f) => !f.startsWith('pyodide/'));
-  const big = FILES.filter((f) => f.startsWith('pyodide/'));
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
       await Promise.all(core.map((f) => cache.add(new Request(f, { cache: 'reload' })).catch(() => {})));
-      for (const f of big) await cache.add(new Request(f, { cache: 'reload' })).catch(() => {});
     })(),
   );
 });
+
+// The big files: after the new version is running (not part of the install wait).
+async function cacheBig() {
+  const cache = await caches.open(CACHE);
+  for (const f of FILES.filter((x) => x.startsWith('pyodide/')))
+    if (!(await cache.match(f, { ignoreVary: true }))) await cache.add(new Request(f, { cache: 'reload' })).catch(() => {});
+}
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
       for (const key of await caches.keys()) if (key.startsWith('rig-tablet-') && key !== CACHE) await caches.delete(key);
       await self.clients.claim();
+      cacheBig();
     })(),
   );
 });
