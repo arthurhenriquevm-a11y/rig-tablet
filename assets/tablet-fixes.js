@@ -80,8 +80,7 @@
       if (t.touchType !== 'stylus') return;
       const row = e.target.closest && e.target.closest(ROWS);
       if (!row || e.target.closest('button, .twisty, input, select, textarea')) return;
-      st = { id: t.identifier, row };
-      row.classList.add('tb-drag-armed');
+      st = { id: t.identifier, row, x: t.clientX, y: t.clientY, moving: false };
     },
     { capture: true, passive: true },
   );
@@ -89,7 +88,16 @@
     'touchmove',
     (e) => {
       if (!st) return;
-      if ([...e.changedTouches].some((x) => x.identifier === st.id) && e.cancelable) e.preventDefault();
+      const t = [...e.changedTouches].find((x) => x.identifier === st.id);
+      if (!t) return;
+      // A tap with the Pencil always jitters a little: blocking that would cancel the tap (no
+      // selection), so the scroll is only stopped once the Pencil really moves, like a drag.
+      if (!st.moving && Math.hypot(t.clientX - st.x, t.clientY - st.y) < 3) return;
+      if (!st.moving) {
+        st.moving = true;
+        st.row.classList.add('tb-drag-armed');
+      }
+      if (e.cancelable) e.preventDefault();
     },
     { capture: true, passive: false },
   );
