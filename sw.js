@@ -2,7 +2,7 @@
 // Offline cache for the installable editor (Rig Tablet). vite.config.js fills in the cache name
 // and the list of built files and writes this out as sw.js; it is not bundled itself.
 
-const CACHE = "rig-tablet-0.5.1-1of5o7l-treefix1";
+const CACHE = "rig-tablet-0.5.1-1of5o7l-treefix2";
 const FILES = ["./","assets/app-O6qaiBkc.js","assets/aseprite-Dq70idiK.js","assets/dist-BISDhMXN.js","assets/dist-js-CGPjRG15.js","assets/dist-js-CmtiOpsg.js","assets/dist-js-DvfKKs8d.js","assets/gif-VmFIG2lv.js","assets/interop-BYtR0Jw9.js","assets/main-BqGsmy1c.css","assets/main-CVWDhsYX.js","assets/offline-Dm1hfR66.js","assets/output-CyLOa8ob.js","assets/panel-D8b-JhzL.js","assets/path-CiM2TmSP.js","assets/pngworker-DmxWEtbT.js","assets/prefs-CEXtYwJn.js","assets/render-BQU7Izf6.js","assets/renderer-GFtNoTVq.js","assets/rigby2d-icon-dark-CGr4vMEi.svg","assets/rolldown-runtime-hePW80VL.js","assets/splash-GZuKtjde.js","assets/spritesheetworker-DN9SdPFE.js","assets/svgimport-DCvIDS7v.js","assets/tablet-fixes.js","assets/themeui-CItxSFNN.js","assets/themeui-CNIZOYgX.css","assets/webview-CvNWatMx.js","assets/whisper.worker-CQ5k5vU2.js","assets/window-pHGx5qse.js","assets/worker-CK5aNBIl.js","index.html","manifest.webmanifest","panel.html","pwa/apple-touch-icon.png","pwa/icon-192.png","pwa/icon-512.png","pwa/icon-maskable-512.png","pyodide/pyodide-lock.json","pyodide/pyodide.asm.mjs","pyodide/pyodide.asm.wasm","pyodide/pyodide.mjs","pyodide/python_stdlib.zip"];
 
 self.addEventListener('install', (event) => {
